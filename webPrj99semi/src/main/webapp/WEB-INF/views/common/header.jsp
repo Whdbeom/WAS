@@ -54,9 +54,3 @@
     </div>
 </header>    
 
-
-<script>
-
-    alert('<%= x %>');
-
-</script>

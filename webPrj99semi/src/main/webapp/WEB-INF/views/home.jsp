@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>홈페이지ㅋㅋㅋ</title>
 <style>
 
 </style>
@@ -17,8 +17,7 @@
          <%@ include file="/WEB-INF/views/common/header.jsp" %>
        <main>
             <h1 align="center">홈페이지</h1>
-       </main>
-       
+       </main>       
     </div>
 
 </body>
