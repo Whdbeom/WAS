@@ -4,7 +4,7 @@
     pageEncoding="UTF-8"%>
     
     <% List<BoardVo> boardVoList = (List<BoardVo>) request.getAttribute("boardVoList"); %>
-  
+  	
  
 <!DOCTYPE html>
 <html>
@@ -31,22 +31,26 @@
 							<th>작성자</th>
 							<th>조회수</th>
 							<th>작성일시</th>
+							<th>카테고리<th>
 						</tr>
 					</thead>
 					<tbody>
 			<% for(BoardVo vo : boardVoList){ %>
-						<tr>
+						<tr class="zzzz">
 							<td><%= vo.getNo() %></td>
 							<td><%= vo.getTitle() %></td>
 							<td><%= vo.getWriterNick() %></td>
 							<td><%= vo.getHit() %></td>
 							<td><%= vo.getEnrollDate() %></td>
+							<td><%= vo.getCategoryName() %></td>
+							
 						</tr>
 			<% } %>
 					</tbody>
 				</table>
-				
-			<button onclick="location.href='/app99/board/write'">작성하기</button>
+			<% if(loginMember != null){ %>
+				<button onclick="location.href='/app99/board/write'">작성하기</button>
+			<% } %>
 			
 			<div class="page-area">
 				<a href="">1</a>
@@ -62,3 +66,16 @@
 	
 </body>
 </html>
+
+<script>
+	const trArr = document.querySelectorAll("main > table > tbody > tr");
+	for(let i = 0; i < trArr.length; i++){
+		trArr[i].addEventListener('click', handleClick);
+	}
+
+	function handleClick(event){
+		const tr = event.currentTarget;
+		const no = tr.children[0].innerText
+		location.href = '/app99/board/detail?no=' + no;
+	}
+</script>

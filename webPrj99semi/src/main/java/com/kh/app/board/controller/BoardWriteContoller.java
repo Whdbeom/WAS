@@ -19,6 +19,14 @@ public class BoardWriteContoller extends HttpServlet {
 	// 게시글 작성 화면
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+		MemberVo loginMember = (MemberVo) req.getSession().getAttribute("loginMember");
+		
+		if(loginMember == null) {
+			req.setAttribute("errorMsg", "로그인하고와");
+			req.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(req, resp);
+		}
+		
 		req.getRequestDispatcher("/WEB-INF/views/board/write.jsp").forward(req, resp);
 		
 	}

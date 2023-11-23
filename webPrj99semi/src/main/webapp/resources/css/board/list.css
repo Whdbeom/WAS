@@ -21,6 +21,16 @@ main{
 	color: blue;
 }
 
+.zzzz:hover {
+	cursor: pointer;
+	background-color: gray;
+}
+
+/* main > table > tbody > tr > td:hover {
+	color: red;
+	cursor: pointer;
+ } */
+
 /* table{
 	display: block;
 	width: 100%;

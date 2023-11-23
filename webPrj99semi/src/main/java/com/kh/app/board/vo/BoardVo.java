@@ -3,16 +3,13 @@ package com.kh.app.board.vo;
 public class BoardVo {
 
 	
-	
-	public BoardVo() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	public BoardVo(String no, String categoryNo, String title, String content, String writerNo, String writerNick,
-			String hit, String enrollDate, String modifyDate, String status) {
+
+	public BoardVo(String no, String categoryNo, String categoryName, String title, String content, String writerNo,
+			String writerNick, String hit, String enrollDate, String modifyDate, String status) {
 		super();
 		this.no = no;
 		this.categoryNo = categoryNo;
+		this.categoryName = categoryName;
 		this.title = title;
 		this.content = content;
 		this.writerNo = writerNo;
@@ -22,8 +19,13 @@ public class BoardVo {
 		this.modifyDate = modifyDate;
 		this.status = status;
 	}
+	public BoardVo() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	private String no;
 	private String categoryNo;
+	private String categoryName;	
 	private String title;
 	private String content;
 	private String writerNo;
@@ -32,6 +34,15 @@ public class BoardVo {
 	private String enrollDate;
 	private String modifyDate;
 	private String status;
+	
+	
+	
+	public String getCategoryName() {
+		return categoryName;
+	}
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
+	}
 	public String getNo() {
 		return no;
 	}
