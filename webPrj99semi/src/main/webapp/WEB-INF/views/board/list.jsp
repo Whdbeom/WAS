@@ -42,8 +42,7 @@
 							<td><%= vo.getWriterNick() %></td>
 							<td><%= vo.getHit() %></td>
 							<td><%= vo.getEnrollDate() %></td>
-							<td><%= vo.getCategoryName() %></td>
-							
+							<td><%= vo.getCategoryName() %></td>						
 						</tr>
 			<% } %>
 					</tbody>
@@ -58,8 +57,7 @@
 				<a href="">3</a>
 				<a href="">4</a>
 				<a href="">5</a>
-			</div>
-	
+			</div>	
 		</main>
 		
 	</div>

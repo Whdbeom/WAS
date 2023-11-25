@@ -11,7 +11,7 @@ public class JDBCTemplate {
 	//getConnection
 	public static Connection getConnection() throws Exception {
 		String url = "jdbc:oracle:thin:@localhost:1521:xe";
-		String id = "C##SEMI";
+		String id = "C##TEST";
 		String pwd = "1234";
 		// JDBC 드라이버 로딩
 		Class.forName("oracle.jdbc.driver.OracleDriver");

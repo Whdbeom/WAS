@@ -11,14 +11,17 @@ import javax.swing.text.html.HTMLDocument.HTMLReader.PreAction;
 
 import com.kh.app.board.vo.BoardVo;
 import com.kh.app.member.vo.MemberVo;
+import com.kh.app.page.vo.PageVo;
 import com.kh.app.util.JDBCTemplate;
 
 public class BoardDao {
 
-	public List<BoardVo> selectBoardList(Connection conn) throws Exception {
-		// SQL
-		String sql = "SELECT B.*, M.NICK WRITER_NICK, C.NAME CATEGORY_NAME FROM BOARD B JOIN MEMBER M ON B.WRITER_NO = M.NO JOIN CATEGORY C ON B.CATEGORY_NO = C.NO WHERE B.STATUS = 'O' ORDER BY B.NO DESC"; 
+	public List<BoardVo> selectBoardList(PageVo pvo, Connection conn) throws Exception {
+		// SQL 
+		String sql = "SELECT * FROM ( SELECT ROWNUM RNUM, T.* FROM ( SELECT B.*, M.NICK WRITER_NICK, C.NAME CATEGORY_NAME FROM BOARD B JOIN MEMBER M ON B.WRITER_NO = M.NO JOIN CATEGORY C ON B.CATEGORY_NO = C.NO WHERE B.STATUS = 'O' ORDER BY B.NO DESC ) T ) WHERE RNUM BETWEEN ? AND ?";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, pvo.getStartRow());
+		pstmt.setInt(2, pvo.getLastRow());
 		ResultSet rs = pstmt.executeQuery();
 		
 		// rs
@@ -147,6 +150,25 @@ public class BoardDao {
 		JDBCTemplate.close(pstmt);
 		
 		return result;
+	}
+
+	public int selectBoardCount(Connection conn) throws Exception {
+		
+		String sql = "SELECT COUNT(*) as cnt FROM BOARD WHERE STATUS='O'";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		ResultSet rs = pstmt.executeQuery();
+		
+		int cnt = 0;	
+		
+		if(rs.next()) {
+			cnt = rs.getInt(1);
+		}
+		
+		JDBCTemplate.close(pstmt);
+		JDBCTemplate.close(rs);
+		
+		return cnt;
+		
 	}
 
 }

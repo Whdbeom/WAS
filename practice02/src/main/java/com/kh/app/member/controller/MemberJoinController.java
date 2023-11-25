@@ -44,6 +44,7 @@ public class MemberJoinController extends HttpServlet{
 				throw new Exception();		
 			}
 			
+			req.setAttribute("msg", "회원가입");
 			req.getRequestDispatcher("/WEB-INF/views/common/success.jsp").forward(req, resp);
 			
 		} catch(Exception e) {
