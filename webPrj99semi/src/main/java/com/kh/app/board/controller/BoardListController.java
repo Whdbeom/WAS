@@ -25,15 +25,20 @@ public class BoardListController extends HttpServlet{
 			
 			// data
 			int listCount = bs.selectBoardCount();		// 전체 게시글 갯수
-			int currentPage = Integer.parseInt(req.getParameter("pno"));	// 현재 페이지
-			int pageLimit = 10;		//	
-			int boardLimit = 5;		//
+			String x = req.getParameter("pno");
+			if(x == null) {
+				x = "1";
+			}
+			int currentPage = Integer.parseInt(x);	// 현재 페이지
+			int pageLimit = 5;		//	
+			int boardLimit = 10;   //
 			PageVo pvo = new PageVo(listCount, currentPage, pageLimit, boardLimit);
 			
 			// service
 			List<BoardVo> boardVoList = bs.selectBoardList(pvo);
 
 			// result (==view)
+			req.setAttribute("pvo", pvo);
 			req.setAttribute("boardVoList", boardVoList);
 			req.getRequestDispatcher("/WEB-INF/views/board/list.jsp").forward(req, resp);
 			

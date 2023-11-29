@@ -26,14 +26,17 @@ main{
 	background-color: gray;
 }
 
+.page-area > span {
+	color : red;
+}
 /* main > table > tbody > tr > td:hover {
 	color: red;
 	cursor: pointer;
  } */
 
-/* table{
-	display: block;
-	width: 100%;
-	height: 100%;
-}
- */
+/* table{*/
+/*	display: block;*/
+/*	width: 100%;*/
+/*	height: 100%;*/
+/*}*/
+ 

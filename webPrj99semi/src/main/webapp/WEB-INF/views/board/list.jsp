@@ -1,10 +1,11 @@
+<%@page import="com.kh.app.page.vo.PageVo"%>
 <%@page import="com.kh.app.board.vo.BoardVo"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
     <% List<BoardVo> boardVoList = (List<BoardVo>) request.getAttribute("boardVoList"); %>
-  	
+  	<% PageVo pvo = (PageVo)request.getAttribute("pvo"); %>
  
 <!DOCTYPE html>
 <html>
@@ -52,11 +53,19 @@
 			<% } %>
 			
 			<div class="page-area">
-				<a href="">1</a>
-				<a href="">2</a>
-				<a href="">3</a>
-				<a href="">4</a>
-				<a href="">5</a>
+				<% if(pvo.getStartPage() != 1){ %>
+			 		<a href="/app99/board/list?pno=<%= pvo.getStartPage()-1 %>">이전</a>				
+				<% } %>
+				<% for(int i = pvo.getStartPage(); i <= pvo.getEndPage(); i++ ){ %>
+					<% if(i == pvo.getCurrentPage()){ %>
+						<span><%= i %></span>
+					<% } else { %>
+						<a href="/app99/board/list?pno=<%= i %>"><%= i %></a>
+					<% } %>				
+				<% } %>
+				<% if(pvo.getEndPage() != pvo.getMaxPage()){ %>
+			 		<a href="/app99/board/list?pno=<%= pvo.getEndPage()+1 %>">다음</a>					
+				<% } %>
 			</div>	
 		</main>
 		
@@ -74,6 +83,6 @@
 	function handleClick(event){
 		const tr = event.currentTarget;
 		const no = tr.children[0].innerText
-		location.href = '/app99/board/detail?no=' + no;
+		location.href = '/app99/board/detail?no=' + no + '&currPage=<%= pvo.getCurrentPage() %>';
 	}
 </script>

@@ -4,6 +4,7 @@
     
     <%
     	BoardVo vo = (BoardVo)request.getAttribute("vo");
+    	String currPage = (String)request.getAttribute("currPage");
     %>
 <!DOCTYPE html>
 <html>
@@ -18,8 +19,6 @@
         <%@ include file="/WEB-INF/views/common/header.jsp" %>
         <main>
             <h1>게시글 상세조회 </h1>
-            
-            
             
             <table border="1">
                 <tbody>
@@ -43,7 +42,8 @@
 	                <button onclick="location.href='/app99/board/delete?no=<%= vo.getNo() %>'">삭제</button>
 	            </div>
             <% } %>
-         
+         	
+         	<a href="/app99/board/list?pno=<%= currPage %>">목록으로</a>
         </main>
     </div>
 </body>
